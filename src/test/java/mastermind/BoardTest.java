@@ -28,22 +28,26 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldCountOneKeyPegWhenOneCodePegIsCorrect() {
+    public void shouldCountOneWhiteKeyPegWhenOneCodePegIsInWrongPosition() {
         List<CodePeg> password = Arrays.asList(
                 CodePeg.RED,
-                CodePeg.BLUE);
+                CodePeg.GREEN,
+                CodePeg.BLUE,
+                CodePeg.RED);
 
         List<CodePeg> guessedPassword = Arrays.asList(
                 CodePeg.MAGENTA,
+                CodePeg.MAGENTA,
+                CodePeg.RED,
                 CodePeg.RED);
 
         Board board = new Board(password);
 
-        assertThat(board.countKeyPegs(guessedPassword), is(1));
+        assertThat(board.countWhiteKeyPegs(guessedPassword), is(1));
     }
 
     @Test
-    public void shouldCountTwoKeyPegsWhenTwoCodePegsAreCorrect() {
+    public void shouldCountTwoWhiteKeyPegsWhenTwoCodePegsAreInWrongPosition() {
         List<CodePeg> password = Arrays.asList(
                 CodePeg.RED,
                 CodePeg.BLUE);
@@ -54,11 +58,28 @@ public class BoardTest {
 
         Board board = new Board(password);
 
-        assertThat(board.countKeyPegs(guessedPassword), is(2));
+        assertThat(board.countWhiteKeyPegs(guessedPassword), is(2));
     }
 
     @Test
-    public void shouldNotCountKeyPegsMultipleTimesWhenOnlyOneCodePegExist() {
+    public void shouldNotCountWhiteKeyPegsWhenCodePegsAreInCorrectPosition() {
+        List<CodePeg> password = Arrays.asList(
+                CodePeg.RED,
+                CodePeg.PURPLE,
+                CodePeg.BLUE);
+
+        List<CodePeg> guessedPassword = Arrays.asList(
+                CodePeg.GREEN,
+                CodePeg.PURPLE,
+                CodePeg.BLUE);
+
+        Board board = new Board(password);
+
+        assertThat(board.countWhiteKeyPegs(guessedPassword), is(0));
+    }
+
+    @Test
+    public void shouldNotCountWhiteKeyPegsMultipleTimesWhenOnlyOneCodePegExist() {
         List<CodePeg> password = Arrays.asList(
                 CodePeg.GREEN,
                 CodePeg.CYAN);
@@ -69,11 +90,11 @@ public class BoardTest {
 
         Board board = new Board(password);
 
-        assertThat(board.countKeyPegs(guessedPassword), is(1));
+        assertThat(board.countWhiteKeyPegs(guessedPassword), is(1));
     }
 
     @Test
-    public void shouldCountTwoKeyPegsWhenTwoDuplicatedCodePegsAreCorrect() {
+    public void shouldCountTwoWhiteKeyPegsWhenTwoDuplicatedCodePegsAreInWrongPosition() {
         List<CodePeg> password = Arrays.asList(
                 CodePeg.PURPLE,
                 CodePeg.PURPLE,
@@ -88,6 +109,51 @@ public class BoardTest {
 
         Board board = new Board(password);
 
-        assertThat(board.countKeyPegs(guessedPassword), is(2));
+        assertThat(board.countWhiteKeyPegs(guessedPassword), is(2));
+    }
+
+    @Test
+    public void shouldCountOneWhiteBlackKeyPegWhenOneCodePegIsInCorrectPosition() {
+        List<CodePeg> password = Arrays.asList(
+                CodePeg.GREEN,
+                CodePeg.BLUE);
+
+        List<CodePeg> guessedPassword = Arrays.asList(
+                CodePeg.GREEN,
+                CodePeg.YELLOW);
+
+        Board board = new Board(password);
+
+        assertThat(board.countBlackKeyPegs(guessedPassword), is(1));
+    }
+
+    @Test
+    public void shouldCountZeroBlackKeyPegWhenNoCodePegIsInCorrectPosition() {
+        List<CodePeg> password = Arrays.asList(
+                CodePeg.YELLOW,
+                CodePeg.CYAN);
+
+        List<CodePeg> guessedPassword = Arrays.asList(
+                CodePeg.MAGENTA,
+                CodePeg.MAGENTA);
+
+        Board board = new Board(password);
+
+        assertThat(board.countBlackKeyPegs(guessedPassword), is(0));
+    }
+
+    @Test
+    public void shouldCountTwoBlackKeyPegWhenTwoCodePegAreInCorrectPosition() {
+        List<CodePeg> password = Arrays.asList(
+                CodePeg.RED,
+                CodePeg.RED);
+
+        List<CodePeg> guessedPassword = Arrays.asList(
+                CodePeg.RED,
+                CodePeg.RED);
+
+        Board board = new Board(password);
+
+        assertThat(board.countBlackKeyPegs(guessedPassword), is(2));
     }
 }

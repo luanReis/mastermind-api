@@ -15,18 +15,36 @@ public class Board {
         return this.password.equals(password);
     }
 
-    public int countKeyPegs(List<CodePeg> guessedPassword) {
+    public int countWhiteKeyPegs(List<CodePeg> guessedPassword) {
         List<CodePeg> correctPassword = new ArrayList<>();
         correctPassword.addAll(this.password);
 
-        int numberOfKeyPegs = 0;
+        int numberOfWhiteKeyPegs = 0;
 
-        for (CodePeg codePeg : guessedPassword) {
-            if(correctPassword.remove(codePeg)) {
-                numberOfKeyPegs++;
+        for (int index = 0; index < guessedPassword.size(); index++) {
+            CodePeg guessedCodePeg = guessedPassword.get(index);
+            CodePeg codePeg = password.get(index);
+
+            if (guessedCodePeg.equals(codePeg)) {
+                continue;
+            } else if (correctPassword.remove(guessedCodePeg)) {
+                numberOfWhiteKeyPegs++;
             }
         }
+        return numberOfWhiteKeyPegs;
+    }
 
-        return numberOfKeyPegs;
+    public int countBlackKeyPegs(List<CodePeg> guessedPassword) {
+        int numberOfBlackKeyPegs = 0;
+
+        for (int index = 0; index < guessedPassword.size(); index++) {
+            CodePeg guessedCodePeg = guessedPassword.get(index);
+            CodePeg codePeg = password.get(index);
+
+            if (guessedCodePeg.equals(codePeg)) {
+                numberOfBlackKeyPegs++;
+            }
+        }
+        return numberOfBlackKeyPegs;
     }
 }
