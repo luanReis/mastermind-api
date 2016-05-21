@@ -1,0 +1,12 @@
+# Java
+*.class
+
+# Gradle
+.gradle
+build/
+
+# IntelliJ
+.idea
+
+## File-based project format:
+*.iws
