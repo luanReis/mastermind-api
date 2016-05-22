@@ -28,6 +28,23 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldReturnFalseWhenThePasswordIsNotCorrect() {
+        List<CodePeg> password = Arrays.asList(
+                CodePeg.CYAN,
+                CodePeg.PURPLE,
+                CodePeg.YELLOW);
+
+        List<CodePeg> guessedPassword = Arrays.asList(
+                CodePeg.BLUE,
+                CodePeg.PURPLE,
+                CodePeg.YELLOW);
+
+        Board board = new Board(password);
+
+        assertThat(board.isPasswordCorrect(guessedPassword), is(false));
+    }
+
+    @Test
     public void shouldCountOneWhiteKeyPegWhenOneCodePegIsInWrongPosition() {
         List<CodePeg> password = Arrays.asList(
                 CodePeg.RED,
