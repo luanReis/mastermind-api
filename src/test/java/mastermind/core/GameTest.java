@@ -1,11 +1,14 @@
-package mastermind;
+package mastermind.core;
 
+import mastermind.core.CodePeg;
+import mastermind.core.Game;
+import mastermind.core.Player;
+import mastermind.core.Result;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

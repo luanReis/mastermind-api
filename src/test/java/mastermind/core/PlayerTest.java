@@ -1,5 +1,8 @@
-package mastermind;
+package mastermind.core;
 
+import mastermind.core.CodePeg;
+import mastermind.core.Player;
+import mastermind.core.Result;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -25,6 +28,6 @@ public class PlayerTest {
 
         player.saveResult(result);
 
-        assertThat(player.getPastResults().size(), is(1));
+        assertThat(player.getResults().size(), is(1));
     }
 }

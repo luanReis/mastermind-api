@@ -1,15 +1,18 @@
-package mastermind;
+package mastermind.core;
 
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
-import static mastermind.CodePeg.*;
+import static mastermind.core.CodePeg.*;
 
 @Getter
 public class Game {
+
+    private final String gameId;
 
     public static final List<CodePeg> AVAILABLE_CODE_PEGS = Arrays.asList(
             RED, BLUE, GREEN, YELLOW, ORANGE, PURPLE, CYAN, MAGENTA
@@ -23,6 +26,7 @@ public class Game {
     private boolean solved;
 
     public Game(List<CodePeg> password, Player player) {
+        this.gameId = UUID.randomUUID().toString();
         this.password = password;
         this.player = player;
     }

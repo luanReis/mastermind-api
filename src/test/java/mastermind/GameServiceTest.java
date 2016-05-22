@@ -1,10 +1,17 @@
 package mastermind;
 
+import mastermind.core.CodePeg;
+import mastermind.core.Game;
+import mastermind.core.Player;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
-import static mastermind.Game.DEFAULT_PASSWORD_LENGTH;
+import static mastermind.core.CodePeg.ORANGE;
+import static mastermind.core.CodePeg.PURPLE;
+import static mastermind.core.Game.DEFAULT_PASSWORD_LENGTH;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
@@ -15,7 +22,7 @@ public class GameServiceTest {
 
     @Test
     public void shouldStartNewGameForSinglePlayer() {
-        GameService gameService = new GameService(new Random());
+        GameService gameService = new GameService();
         Game game = gameService.start(new Player("someName"));
 
         assertThat(game, not(is(nullValue())));
@@ -33,5 +40,16 @@ public class GameServiceTest {
         gameService.start(new Player("someName"));
 
         verify(randomMock, times(DEFAULT_PASSWORD_LENGTH)).nextInt(DEFAULT_PASSWORD_LENGTH);
+    }
+
+    @Test
+    public void shouldMakeGuessForPreviouslyCreatedGame() {
+        GameService gameService = new GameService();
+        Game game = gameService.start(new Player("playerName"));
+
+        List<CodePeg> guessedPassword = Arrays.asList(ORANGE, PURPLE);
+        Game playedGame = gameService.guess(game.getGameId(), guessedPassword);
+
+        assertThat(playedGame, is(game));
     }
 }

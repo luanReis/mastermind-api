@@ -1,11 +1,13 @@
-package mastermind;
+package mastermind.core;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode
+@Getter
 public class Player {
 
     private final String name;
@@ -18,9 +20,5 @@ public class Player {
 
     public void saveResult(Result result) {
         this.results.add(result);
-    }
-
-    public List<Result> getPastResults() {
-        return results;
     }
 }

@@ -1,5 +1,8 @@
 package mastermind;
 
+import mastermind.core.CodePeg;
+import mastermind.core.Game;
+import mastermind.core.Player;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,17 +13,21 @@ import java.util.Random;
 public class GameService {
 
     private final Random random;
+    private final List<Game> games;
 
     public GameService() {
-        this.random = new Random();
+        this(new Random());
     }
 
     public GameService(Random random) {
         this.random = random;
+        this.games = new ArrayList<>();
     }
 
     public Game start(Player player) {
-        return new Game(generatePassword(), player);
+        Game game = new Game(generatePassword(), player);
+        games.add(game);
+        return game;
     }
 
     private List<CodePeg> generatePassword() {
@@ -32,5 +39,21 @@ public class GameService {
         }
 
         return generatedPassword;
+    }
+
+    public Game guess(String gameId, List<CodePeg> guessedPassword) {
+        Game game = findGame(gameId);
+        game.checkPassword(guessedPassword);
+        return game;
+    }
+
+    private Game findGame(String gameId) {
+        for (Game game: games) {
+            if (game.getGameId().equals(gameId)) {
+                return game;
+            }
+        }
+
+        return null;
     }
 }
