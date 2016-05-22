@@ -1,23 +1,39 @@
 package mastermind;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static mastermind.CodePeg.*;
+
+@Getter
 public class Game {
+
+    public static final List<CodePeg> AVAILABLE_CODE_PEGS = Arrays.asList(
+            RED, BLUE, GREEN, YELLOW, ORANGE, PURPLE, CYAN, MAGENTA
+    );
+
+    public static final int DEFAULT_PASSWORD_LENGTH = 8;
 
     private final List<CodePeg> password;
     private final Player player;
+
+    private boolean solved;
 
     public Game(List<CodePeg> password, Player player) {
         this.password = password;
         this.player = player;
     }
 
-    public boolean isPasswordCorrect(List<CodePeg> password) {
+    private boolean isPasswordCorrect(List<CodePeg> password) {
         return this.password.equals(password);
     }
 
     public Result checkPassword(List<CodePeg> guessedPassword) {
+        solved = isPasswordCorrect(guessedPassword);
+
         List<CodePeg> correctPassword = new ArrayList<>();
         correctPassword.addAll(this.password);
 
@@ -55,5 +71,9 @@ public class Game {
             }
         }
         return numberOfBlackKeyPegs;
+    }
+
+    public boolean isSolved() {
+        return solved;
     }
 }

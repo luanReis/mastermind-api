@@ -2,8 +2,10 @@ package mastermind;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -13,40 +15,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class GameTest {
-
-    @Test
-    public void shouldReturnTrueWhenThePasswordIsCorrect() {
-        List<CodePeg> password = Arrays.asList(
-                CodePeg.RED,
-                CodePeg.BLUE,
-                CodePeg.GREEN,
-                CodePeg.YELLOW,
-                CodePeg.ORANGE,
-                CodePeg.PURPLE,
-                CodePeg.CYAN,
-                CodePeg.MAGENTA);
-
-        Game game = new Game(password, new Player("someName"));
-
-        assertThat(game.isPasswordCorrect(password), is(true));
-    }
-
-    @Test
-    public void shouldReturnFalseWhenThePasswordIsNotCorrect() {
-        List<CodePeg> password = Arrays.asList(
-                CodePeg.CYAN,
-                CodePeg.PURPLE,
-                CodePeg.YELLOW);
-
-        List<CodePeg> guessedPassword = Arrays.asList(
-                CodePeg.BLUE,
-                CodePeg.PURPLE,
-                CodePeg.YELLOW);
-
-        Game game = new Game(password, new Player("someName"));
-
-        assertThat(game.isPasswordCorrect(guessedPassword), is(false));
-    }
 
     @Test
     public void shouldCountOneWhiteKeyPegWhenOneCodePegIsInWrongPosition() {
@@ -254,5 +222,27 @@ public class GameTest {
         Result result = game.checkPassword(guessedPassword);
 
         verify(playerMock, times(1)).saveResult(result);
+    }
+
+    @Test
+    public void shouldSetSolvedValueToTrueWhenGuessedPasswordIsCorrect() {
+        List<CodePeg> password = Arrays.asList(
+                CodePeg.ORANGE,
+                CodePeg.ORANGE);
+
+        List<CodePeg> guessedPassword = Arrays.asList(
+                CodePeg.ORANGE,
+                CodePeg.ORANGE);
+
+        Game game = new Game(password, new Player("someName"));
+        game.checkPassword(guessedPassword);
+
+        assertThat(game.isSolved(), is(true));
+    }
+
+    @Test
+    public void shouldSetSolvedValueToFalseWhenNewGameIsCreated() {
+        Game game = new Game(new ArrayList<>(), new Player("someName"));
+        assertThat(game.isSolved(), is(false));
     }
 }
