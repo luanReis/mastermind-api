@@ -1,26 +1,20 @@
-buildscript {
+description = 'Mastermind RESTful API'
+
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+
     repositories {
         mavenCentral()
     }
-}
 
-apply plugin: 'java'
-apply plugin: 'idea'
-
-jar {
-    baseName = 'mastermind-api'
-    version =  '0.1.0'
-}
-
-repositories {
-    mavenCentral()
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-dependencies {
-    testCompile("junit:junit")
+    ext.libs = [
+            unit_tests: [
+                    'junit:junit:4.+',
+                    'org.assertj:assertj-core:3.3.0'
+            ]
+    ]
 }
 
 task wrapper(type: Wrapper) {

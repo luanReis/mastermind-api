@@ -1,0 +1,10 @@
+rootProject.name = 'mastermind-api'
+
+// application
+include 'application:core'
+include 'application:dataproviders'
+include 'application:entrypoints'
+include 'application:configuration'
+
+// testing
+include 'acceptance-tests'
