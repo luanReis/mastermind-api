@@ -1,11 +1,8 @@
 package mastermind.acceptance;
 
-import org.junit.Test;
+import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
 
+@RunWith(Cucumber.class)
 public class MeetMyRequirementAcceptanceTest {
-
-    @Test
-    public void shouldRun() {
-        System.out.println("Acceptance test here...");
-    }
 }

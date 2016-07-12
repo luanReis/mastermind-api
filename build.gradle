@@ -13,6 +13,10 @@ subprojects {
             unit_tests: [
                     'junit:junit:4.+',
                     'org.assertj:assertj-core:3.3.0'
+            ],
+            acceptance_tests: [
+                    'info.cukes:cucumber-java:1.2.4',
+                    'info.cukes:cucumber-junit:1.2.4'
             ]
     ]
 }
