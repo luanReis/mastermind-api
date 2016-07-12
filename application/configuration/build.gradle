@@ -1,4 +1,4 @@
-description = "Wires the application together."
+description = 'Wires the application together.'
 
 // configure spring boot with gradle
 buildscript {
@@ -13,8 +13,8 @@ apply plugin: 'spring-boot'
 
 // generate the main application jar in the "application" folder, to make it easier to find
 jar {
-    archiveName = "mastermind-api.jar"
-    destinationDir = project(":application").getBuildDir()
+    archiveName = 'mastermind-api.jar'
+    destinationDir = project(':application').getBuildDir()
 }
 
 dependencies {
