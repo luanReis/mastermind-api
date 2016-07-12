@@ -1,5 +1,24 @@
-description = 'Wires the application together.'
+description = "Wires the application together."
+
+// configure spring boot with gradle
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springboot_version}")
+    }
+}
+apply plugin: 'spring-boot'
+
+// generate the main application jar in the "application" folder, to make it easier to find
+jar {
+    archiveName = "mastermind-api.jar"
+    destinationDir = project(":application").getBuildDir()
+}
 
 dependencies {
+    compile libs.spring_boot
+
     testCompile libs.unit_tests
 }
