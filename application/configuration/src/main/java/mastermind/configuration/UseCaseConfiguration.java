@@ -1,6 +1,7 @@
 package mastermind.configuration;
 
-import mastermind.core.HelloWorldUseCase;
+import mastermind.core.usecase.GetAllExamples;
+import mastermind.core.usecase.GetAllExamplesUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfiguration {
 
     @Bean
-    public HelloWorldUseCase helloWorldUseCase() {
-        return new HelloWorldUseCase();
+    public GetAllExamplesUseCase helloWorldUseCase(GetAllExamples getAllExamples) {
+        return new GetAllExamplesUseCase(getAllExamples);
     }
 }

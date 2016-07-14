@@ -22,6 +22,9 @@ subprojects {
             ],
             spring_boot     : [
                     "org.springframework.boot:spring-boot-starter-web:${springboot_version}"
+            ],
+            database        : [
+                    "org.springframework.boot:spring-boot-starter-data-mongodb:${springboot_version}"
             ]
     ]
 }

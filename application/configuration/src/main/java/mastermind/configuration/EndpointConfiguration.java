@@ -1,7 +1,7 @@
 package mastermind.configuration;
 
-import mastermind.core.HelloWorldUseCase;
-import mastermind.entrypoints.HelloWorldEndpoint;
+import mastermind.core.usecase.GetAllExamplesUseCase;
+import mastermind.entrypoints.GetAllExamplesEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class EndpointConfiguration {
 
     @Bean
-    public HelloWorldEndpoint helloWorldEndpoint(HelloWorldUseCase helloWorldUseCase) {
-        return new HelloWorldEndpoint(helloWorldUseCase);
+    public GetAllExamplesEndpoint helloWorldEndpoint(GetAllExamplesUseCase getAllExamplesUseCase) {
+        return new GetAllExamplesEndpoint(getAllExamplesUseCase);
     }
 }
