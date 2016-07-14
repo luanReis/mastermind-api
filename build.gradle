@@ -24,7 +24,8 @@ subprojects {
                     "org.springframework.boot:spring-boot-starter-web:${springboot_version}"
             ],
             database        : [
-                    "org.springframework.boot:spring-boot-starter-data-mongodb:${springboot_version}"
+                    "org.springframework.boot:spring-boot-starter-data-mongodb:${springboot_version}",
+                    'de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.50.5'
             ]
     ]
 }
