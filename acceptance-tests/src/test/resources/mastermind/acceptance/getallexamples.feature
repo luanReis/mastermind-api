@@ -1,6 +1,6 @@
-Feature: Meet My Requirement
+Feature: Get examples
 
-  Scenario: Setup cucumber
+  Scenario: Return existing examples
     Given there are some examples
       | Hello world       |
       | Hello world again |
@@ -8,3 +8,8 @@ Feature: Meet My Requirement
     Then all examples are found
       | Hello world       |
       | Hello world again |
+
+  Scenario: Return no examples
+    Given there are no examples
+    When I get all examples
+    Then no examples are found

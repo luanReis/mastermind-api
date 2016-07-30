@@ -45,6 +45,16 @@ public class Stepdefs {
         expectedMessages.stream().forEach(expectedMessage -> exampleHasBeenFound(example(expectedMessage)));
     }
 
+    @Given("^there are no examples$")
+    public void thereAreNoExamples() throws Throwable {
+        when(getAllExamples.getAllExamples()).thenReturn(new ArrayList<>());
+    }
+
+    @Then("^no examples are found$")
+    public void noExamplesAreFound() throws Throwable {
+        assertThat(allExamplesFound).hasSize(0);
+    }
+
     private void exampleHasBeenFound(Example expectedExample) {
         boolean containsExample = allExamplesFound.stream().anyMatch(example ->
                 example.getMessage().equals(expectedExample.getMessage())
