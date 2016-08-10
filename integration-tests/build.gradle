@@ -1,0 +1,19 @@
+description = "Integration Tests for checking the entrypoints and dataproviders"
+
+test {
+
+    // make gradle print the test result for each test in the build (we like to see the acceptance tests running)
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+// we want to run the integration tests after the acceptance tests, to follow the testing pyramid
+test.mustRunAfter(":acceptance-tests:test")
+
+dependencies {
+    testCompile project(":application:configuration")
+    testCompile libs.unit_tests
+    testCompile libs.acceptance_tests
+    testCompile libs.integration_test
+}

@@ -20,6 +20,11 @@ subprojects {
                     'info.cukes:cucumber-java:1.+',
                     'info.cukes:cucumber-junit:1.+'
             ],
+            integration_test: [
+                    'org.springframework:spring-test:4.+',
+                    "org.springframework.boot:spring-boot-test:${springboot_version}",
+                    "org.springframework.boot:spring-boot-test-autoconfigure:${springboot_version}"
+            ],
             spring_boot     : [
                     "org.springframework.boot:spring-boot-starter-web:${springboot_version}"
             ],
