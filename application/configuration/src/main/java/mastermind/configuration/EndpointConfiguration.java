@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class EndpointConfiguration {
 
     @Bean
-    public GetAllExamplesEndpoint helloWorldEndpoint(GetAllExamplesUseCase getAllExamplesUseCase) {
+    public GetAllExamplesEndpoint getAllExamplesEndpoint(GetAllExamplesUseCase getAllExamplesUseCase) {
         return new GetAllExamplesEndpoint(getAllExamplesUseCase);
     }
 }

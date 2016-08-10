@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfiguration {
 
     @Bean
-    public GetAllExamplesUseCase helloWorldUseCase(GetAllExamples getAllExamples) {
+    public GetAllExamplesUseCase getAllExamplesUseCase(GetAllExamples getAllExamples) {
         return new GetAllExamplesUseCase(getAllExamples);
     }
 }
