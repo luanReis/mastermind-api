@@ -7,25 +7,25 @@ subprojects {
     }
 
     ext {
-        springboot_version = "1.3.6.RELEASE"
+        springboot_version = "1.+"
     }
 
     ext.libs = [
             unit_tests      : [
                     'junit:junit:4.+',
-                    'org.assertj:assertj-core:3.3.0',
-                    'org.mockito:mockito-core:1.10.19'
+                    'org.assertj:assertj-core:3.+',
+                    'org.mockito:mockito-core:1.+'
             ],
             acceptance_tests: [
-                    'info.cukes:cucumber-java:1.2.4',
-                    'info.cukes:cucumber-junit:1.2.4'
+                    'info.cukes:cucumber-java:1.+',
+                    'info.cukes:cucumber-junit:1.+'
             ],
             spring_boot     : [
                     "org.springframework.boot:spring-boot-starter-web:${springboot_version}"
             ],
             database        : [
                     "org.springframework.boot:spring-boot-starter-data-mongodb:${springboot_version}",
-                    'de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.50.5'
+                    'de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.+'
             ]
     ]
 }
